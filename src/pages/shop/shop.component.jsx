@@ -7,7 +7,7 @@ import CollectionOverview from '../../components/collection-overview/collection-
 import './shop.style.scss';
 
 const Shop = ({match} ) => {
-    console.log(match);
+    //console.log(match);
 
     return (
         <div className='shop-page'>

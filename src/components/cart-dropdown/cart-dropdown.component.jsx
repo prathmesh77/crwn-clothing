@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
-import { cartHidden, selectCartItems } from '../../redux/cart/cart.selectors';
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 import { toggleCartHidden } from '../../redux/cart/cart.action';
 
 import './cart-dropdown.style.scss';
@@ -14,10 +14,8 @@ const CartDropdown = ({ cartItem, history, toggleHidden }) => {
                 {
                     cartItem.length?
                     (cartItem.map(item =>
-                        (<CartItem key={item.id} cartitem={item} />))
-                    ) : (
-                        <span className='empty-message'>Your cart is empty</span>   
-                    )
+                        <CartItem key={item.id} cartitem={item} />)
+                    ) : (<span className='empty-message'>Your cart is empty</span>)
                         
                 }
             </div>

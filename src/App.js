@@ -7,9 +7,10 @@ import Shop from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/signIn-and-signOut/signIn-and-signOut.component';
 import Header from './components/header/header.component';
 import Checkout from './pages/checkout/checkout.component';
-import {auth,createUserProfileDocument} from './firebase.util';
+import {auth,createUserProfileDocument,addCollectionAndDocuments} from './firebase.util';
 import { setCurrentUser } from './redux/user/user.action';
 import { selectCurrentUser } from './redux/user/user.selectors';
+import { selectCollectionPreview } from "./redux/shop/shop.selectors";
 
 import './App.css';
 
@@ -17,7 +18,7 @@ class App extends React.Component {
     unsubscribeFromAuth = null;
 
     componentDidMount() {
-        const { setCurrentUser } = this.props;
+        const { setCurrentUser,collectionArray } = this.props;
 
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
              if (userAuth) {
@@ -28,9 +29,9 @@ class App extends React.Component {
                         ...snapShot.data()
                     });
                 });
-            } else {
-                 setCurrentUser(userAuth);
-            }
+            } 
+            setCurrentUser(userAuth);
+            addCollectionAndDocuments('collections', collectionArray.map(({title,items})=>({title,items})));
             
         });
     }
@@ -59,7 +60,10 @@ class App extends React.Component {
     
 }
 const mapStateToProps = state => {
-    return {currentUser:selectCurrentUser(state)}
+    return {
+        currentUser: selectCurrentUser(state),
+        collectionArray:selectCollectionPreview(state)
+    }
 }
 const mapDispatchToProps = dispatch => {
     return { setCurrentUser: user => dispatch(setCurrentUser(user)) }
