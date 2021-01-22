@@ -10,7 +10,6 @@ import Checkout from './pages/checkout/checkout.component';
 import {auth,createUserProfileDocument} from './firebase.util';
 import { setCurrentUser } from './redux/user/user.action';
 import { selectCurrentUser } from './redux/user/user.selectors';
-import { selectCollectionPreview } from "./redux/shop/shop.selectors";
 
 import './App.css';
 
