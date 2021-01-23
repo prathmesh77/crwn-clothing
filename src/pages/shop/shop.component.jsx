@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import Collection from '../collection/collection.component';
 import CollectionOverview from '../../components/collection-overview/collection-overview.component';
-import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import withSpinner from '../../components/with-spinner/with-spinner.component';
 import {selectIsFetchingCollections,selectIsCollectionLoaded } from '../../redux/shop/shop.selectors';
 import './shop.style.scss';
@@ -15,9 +15,8 @@ const CollectionWithSpinner = withSpinner(Collection);
 class Shop extends React.Component {
     
     componentDidMount() {
-        console.log("component mounted");
-        const { fetchCollectionsStartAsync } = this.props;
-        fetchCollectionsStartAsync();     
+        const { fetchCollectionsStart } = this.props;
+        fetchCollectionsStart();     
     }
 
     render() {
@@ -42,6 +41,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => {
-    return { fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()) }
+    return { fetchCollectionsStart: () => dispatch(fetchCollectionsStart()) }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Shop);
