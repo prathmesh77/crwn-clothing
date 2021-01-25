@@ -10,7 +10,7 @@ export const fetchCollectionsSuccess = (collection) => ({
 })
 
 export const fetchCollectionsFailure = (error) => ({
-    type: shopActionTypes.fetchCollectionsFailure,
+    type: shopActionTypes.FETCH_COLLECTION_FAILURE,
     payload:error
 })
 
