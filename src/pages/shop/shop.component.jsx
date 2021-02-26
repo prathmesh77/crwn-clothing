@@ -9,6 +9,7 @@ import withSpinner from '../../components/with-spinner/with-spinner.component';
 import {selectIsFetchingCollections,selectIsCollectionLoaded } from '../../redux/shop/shop.selectors';
 import './shop.style.scss';
 
+
 const CollectionOverviewWithSpinner = withSpinner(CollectionOverview);
 const CollectionWithSpinner = withSpinner(Collection);
 
